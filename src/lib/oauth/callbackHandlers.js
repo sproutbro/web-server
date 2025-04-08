@@ -82,6 +82,4 @@ export const OAUTH_CALLBACK_HANDLER = {
 
         return user;
     }
-
-    // 👉 나중에 google, github도 여기에 추가할 수 있어
 };

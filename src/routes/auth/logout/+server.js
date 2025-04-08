@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 
 export function GET({ cookies }) {
-    cookies.delete('user_id', { path: '/' });
+    cookies.delete('auth_token', { path: '/' });
 
     throw redirect(302, '/');
 }

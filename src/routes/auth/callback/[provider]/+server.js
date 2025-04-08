@@ -1,5 +1,6 @@
 import { redirect, error } from "@sveltejs/kit";
 import { OAUTH_CALLBACK_HANDLER } from '$lib/oauth/callbackHandlers';
+import { generateToken } from '$lib/server/jwt.js';
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url, params, cookies }) {
@@ -16,7 +17,8 @@ export async function GET({ url, params, cookies }) {
     if (!handler) throw error(400, `Unsupported provider: ${provider}`);
 
     const user = await handler({ code });
-    cookies.set('user_id', user.id, {
+    const token = generateToken(user);
+    cookies.set('auth_token', token, {
         path: '/',
         maxAge: 60 * 60 * 24,
     });
