@@ -24,3 +24,19 @@ export async function findUserById(id) {
     );
     return result.rows[0] ?? null;
 }
+
+export async function updateNickname(id, nickname) {
+    const result = await db.query(
+        `UPDATE 
+            users
+        SET 
+            nickname=$2
+        WHERE 
+            id=$1
+        RETURNING 
+            id, nickname, provider`,
+        [id, nickname]
+    );
+
+    return result.rows[0] ?? null;
+}
