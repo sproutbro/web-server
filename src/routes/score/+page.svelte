@@ -20,3 +20,22 @@
         <a href="/score/runner">more+</a>
     </div>
 </div>
+
+<div class="card">
+    <strong>Quiz</strong>
+    {#if data.quizScore.length > 0}
+        <div class="card-content">
+            {#each data.quizScore as score}
+                <div>
+                    👑{score.rank} - 🎯{score.score}
+                    <span class="right">👤{score.nickname}</span>
+                </div>
+            {/each}
+        </div>
+    {:else}
+        <p>No score available.</p>
+    {/if}
+    <div class="links">
+        <a href="/score/runner">more+</a>
+    </div>
+</div>
